@@ -26,12 +26,3 @@ jobs:
       run: |
         echo "OS: ${{ matrix.os }}"
         echo "nodejs version: ${{ matrix.nodejs }}"
-
-    steps:
-    - name: Say Hello World 2
-      if: matrix.os != 'windows-latest'
-      shell: bash
-
-      run: |
-        echo "OS: ${{ matrix.os }}"
-        echo "nodejs version: ${{ matrix.nodejs }}"
