@@ -3,7 +3,7 @@ name: 'SWM GitHub Actions Basic'
 on: push
 
 env:
-  GLOBAL_LEVEL: 'GLOBAL ENV VALUE'
+  WORKFLOW_LEVEL: "This value comes from the WORKFLOW level"
 
 jobs:
   first-job:
@@ -12,73 +12,43 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      JOB_LEVEL_1: 'JOB LEVEL VALUE 1'
+      JOB_LEVEL: "This value comes from the JOB level"
 
     steps:
-    - name: Say Hello World 1
+    - name: Say Hello World
+      shell: bash
+      run: |
+        echo "Hello World"
+
+    - name: Check environment variables 1
       shell: bash
       env:
-        STEP_LEVEL_1: 'STEP LEVEL VALUE 1'
+        STEP_LEVEL_1: "This value comes from the STEP level 1"
       run: |
-        echo "Hello World from step 1"
+        echo "workflow level: $WORKFLOW_LEVEL"
+        echo "job level: $JOB_LEVEL"
+        echo "step level 1: $STEP_LEVEL_1"
+        echo "step level 2: $STEP_LEVEL_2"
+        echo "step level 3: $STEP_LEVEL_3"
 
-        echo "GLOBAL: $GLOBAL_LEVEL"
-        echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
-        echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
-        echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
-        echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
-
-    - name: Say Hello World 2
+    - name: Check environment variables 2
       shell: pwsh
       env:
-        STEP_LEVEL_2: 'STEP LEVEL VALUE 2'
+        STEP_LEVEL_2: "This value comes from the STEP level 2"
       run: |
-        echo "Hello World from step 2"
+        echo "workflow level: $env:WORKFLOW_LEVEL"
+        echo "job level: $env:JOB_LEVEL"
+        echo "step level 1: $env:STEP_LEVEL_1"
+        echo "step level 2: $env:STEP_LEVEL_2"
+        echo "step level 3: $env:STEP_LEVEL_3"
 
-        echo "GLOBAL: $env:GLOBAL_LEVEL"
-        echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
-        echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
-        echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
-        echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
-
-  second-job:
-    name: 'Second Job'
-
-    runs-on: ubuntu-latest
-    env:
-      JOB_LEVEL_1: 'JOB LEVEL VALUE 1'
-
-    steps:
-    - name: Say Hello World 1
+    - name: Check environment variables 3
       shell: bash
       env:
-        STEP_LEVEL_3: 'STEP LEVEL VALUE 3'
+        STEP_LEVEL_3: "This value comes from the STEP level 3"
       run: |
-        echo "Hello World from step 1"
-
-        echo "GLOBAL: $GLOBAL_LEVEL"
-        echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
-        echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
-        echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
-        echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
-        echo "STEP 3: ${{ env.STEP_LEVEL_3 }}"
-        echo "STEP 4: ${{ env.STEP_LEVEL_4 }}"
-
-    - name: Say Hello World 2
-      shell: pwsh
-      run: |
-        echo "Hello World from step 2"
-      env:
-        STEP_LEVEL_4: 'STEP LEVEL VALUE 4'
-      run: |
-        echo "Hello World from step 2"
-
-        echo "GLOBAL: $env:GLOBAL_LEVEL"
-        echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
-        echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
-        echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
-        echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
-        echo "STEP 3: ${{ env.STEP_LEVEL_3 }}"
-        echo "STEP 4: ${{ env.STEP_LEVEL_4 }}"
-      
-      
+        echo "workflow level: ${{ env.WORKFLOW_LEVEL }}"
+        echo "job level: ${{ env.JOB_LEVEL }}"
+        echo "step level 1: ${{ env.STEP_LEVEL_1 }}"
+        echo "step level 2: ${{ env.STEP_LEVEL_2 }}"
+        echo "step level 3: ${{ env.STEP_LEVEL_3 }}"
