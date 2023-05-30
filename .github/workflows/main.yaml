@@ -13,12 +13,12 @@ jobs:
       shell: bash
 
       run: |
-        curl -X POST https://webexapis.com/v1/messages \
-          -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" \
-          -H "Content-type: application/json" \
-          -d "{
+        curl --location --request POST 'https://webexapis.com/v1/messages' \
+          --header 'Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}' \
+          --header 'Content-type: application/json' \
+          --data-raw '{
             "roomId": "${{ secrets.WEBEX_ROOMID }}",
             "text": "메시지입니다 - FROM GITHUB 액션"
-          }"
+          }''
 
   
