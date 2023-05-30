@@ -13,7 +13,7 @@ jobs:
       shell: bash
 
       run: |
-        cur -X POST https://webexapis.com/v1/messages \
+        curl -X POST https://webexapis.com/v1/messages \
           -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" \
           -H "Content-type: application/json" \
           -d "{
