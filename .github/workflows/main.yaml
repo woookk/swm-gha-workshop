@@ -2,36 +2,82 @@ name: 'SWM GitHub Actions Basic'
 
 on: push
 
+env:
+  GLOBAL_LEVEL: 'GLOBAL ENV VALUE'
+
 jobs:
   first-job:
     name: 'First Job'
 
     runs-on: ubuntu-latest
 
+    env:
+      JOB_LEVEL_1: 'JOB LEVEL VALUE 1'
+
     steps:
     - name: Say Hello World 1
       shell: bash
+      env:
+        STEP_LEVEL_1: 'STEP LEVEL VALUE 1'
       run: |
         echo "Hello World from step 1"
 
+        echo "GLOBAL: $GLOBAL_LEVEL"
+        echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
+        echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
+        echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
+        echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
+
     - name: Say Hello World 2
       shell: pwsh
+      env:
+        STEP_LEVEL_2: 'STEP LEVEL VALUE 2'
       run: |
         echo "Hello World from step 2"
+
+        echo "GLOBAL: $env:GLOBAL_LEVEL"
+        echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
+        echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
+        echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
+        echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
 
   second-job:
     name: 'Second Job'
 
     runs-on: ubuntu-latest
+    env:
+      JOB_LEVEL_1: 'JOB LEVEL VALUE 1'
 
     steps:
     - name: Say Hello World 1
       shell: bash
+      env:
+        STEP_LEVEL_3: 'STEP LEVEL VALUE 3'
       run: |
         echo "Hello World from step 1"
+
+        echo "GLOBAL: $GLOBAL_LEVEL"
+        echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
+        echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
+        echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
+        echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
+        echo "STEP 3: ${{ env.STEP_LEVEL_3 }}"
+        echo "STEP 4: ${{ env.STEP_LEVEL_4 }}"
 
     - name: Say Hello World 2
       shell: pwsh
       run: |
         echo "Hello World from step 2"
+      env:
+        STEP_LEVEL_4: 'STEP LEVEL VALUE 4'
+      run: |
+        echo "Hello World from step 2"
+
+        echo "GLOBAL: $env:GLOBAL_LEVEL"
+        echo "JOB 1: ${{ env.JOB_LEVEL_1 }}"
+        echo "JOB 2: ${{ env.JOB_LEVEL_2 }}"
+        echo "STEP 1: ${{ env.STEP_LEVEL_1 }}"
+        echo "STEP 2: ${{ env.STEP_LEVEL_2 }}"
+        echo "STEP 3: ${{ env.STEP_LEVEL_3 }}"
+        echo "STEP 4: ${{ env.STEP_LEVEL_4 }}"
         
