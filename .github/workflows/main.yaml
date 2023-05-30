@@ -21,7 +21,7 @@ jobs:
             "text": "메시지입니다 - FROM GITHUB 액션"
           }'
 
-    - name: Send a Webex Notification
+    name: Send a Webex Notification
     steps:
       - name: Post Message to Webex Room
         uses: chrivand/action-webex-js@main
@@ -30,10 +30,10 @@ jobs:
           WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOMID }}
           MARKDOWN_MESSAGE: "**Hello, world! You just ran an action from ${{ github.repository }}.**"
 
-    - name: Send message from custom action to Webex
-      uses: .github/actions@mains
-      with:
-        webexToken: ${{ secrets.WEBEX_TOKEN }}
-        webexRoomId: ${{ secrets.WEBEX_ROOMID }}
-        bodyText: 'Message sent by Github Actions from ${{ github.repository }}'
-        bodyMarkdown: '**Hello, world! You just ran an action from ${{ github.repository }}.**'
+      - name: Send message from custom action to Webex
+        uses: .github/actions@mains
+        with:
+          webexToken: ${{ secrets.WEBEX_TOKEN }}
+          webexRoomId: ${{ secrets.WEBEX_ROOMID }}
+          bodyText: 'Message sent by Github Actions from ${{ github.repository }}'
+          bodyMarkdown: '**Hello, world! You just ran an action from ${{ github.repository }}.**'
