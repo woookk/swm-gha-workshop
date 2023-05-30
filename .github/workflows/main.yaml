@@ -2,28 +2,76 @@ name: 'SWM GitHub Actions Basic'
 
 on: push
 
-env:
-  GLOBAL_LEVEL: 'GLOBAL VALUE'
-
 jobs:
-  first-job:
-    name: 'First Job'
+  build-test:
+    name: 'Build & Test'
 
-    strategy:
-      matrix:
-        os: [ 'ubuntu-latest', 'windows-latest', 'macos-latest']
-        nodejs: [ '16', '18' ]
-
-    runs-on: ${{ matrix.os }}
-
-    env:
-      JOB_LEVEL_1: 'JOB LEVEL VALUE 1'
+    runs-on: 'ubuntu-latest'
 
     steps:
     - name: Say Hello World 1
-      if: matrix.os != 'windows-latest'
       shell: bash
 
       run: |
-        echo "OS: ${{ matrix.os }}"
-        echo "nodejs version: ${{ matrix.nodejs }}"
+        echo "Hello World"
+
+  deploy-dev:
+    name: 'Deploy to dev'
+
+    needs:
+      - build-test
+    
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name: Say Hello World 1
+      shell: bash
+
+      run: |
+        echo "Hello World"
+
+  deploy-staging1:
+    name: 'Deploy to staging 1'
+
+    needs:
+      - deploy-dev
+    
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name: Say Hello World 1
+      shell: bash
+
+      run: |
+        echo "Hello World"
+
+  deploy-staging2:
+    name: 'Deploy to staging 2'
+
+    needs:
+      - deploy-dev
+    
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name: Say Hello World 1
+      shell: bash
+
+      run: |
+        echo "Hello World"
+
+  deploy-prod:
+    name: 'Deploy to prod'
+
+    needs:
+      - deploy-staging1
+      - deploy-staging2
+    
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name: Say Hello World 1
+      shell: bash
+
+      run: |
+        echo "Hello World"
