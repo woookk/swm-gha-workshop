@@ -19,6 +19,6 @@ jobs:
           --data-raw '{
             "roomId": "${{ secrets.WEBEX_ROOMID }}",
             "text": "메시지입니다 - FROM GITHUB 액션"
-          }''
+          }'
 
   
