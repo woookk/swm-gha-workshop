@@ -22,7 +22,7 @@ jobs:
       run: |
         echo "Hello World from step 1"
 
-        randomValue = "swm$(echo $RANDOM)"
+        randomValue="swm$(echo $RANDOM)"
 
         echo "STEP_VALUE=$randomValue" >> $GITHUB_ENV
 
