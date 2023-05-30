@@ -32,7 +32,7 @@ jobs:
         MARKDOWN_MESSAGE: "**Hello, world! You just ran an action from ${{ github.repository }}.**"
 
     - name: Send message from custom action to Webex
-      uses: .github/actions@mains
+      uses: .github/actions@main
       with:
         webexToken: ${{ secrets.WEBEX_TOKEN }}
         webexRoomId: ${{ secrets.WEBEX_ROOMID }}
