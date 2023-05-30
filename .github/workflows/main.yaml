@@ -20,7 +20,7 @@ jobs:
       JOB_LEVEL_1: 'JOB LEVEL VALUE 1'
 
     steps:
-    - name: Say Hello World 1 - ${{ matrix.os }}
+    - name: Say Hello World 1
       shell: bash
 
       run: |
@@ -28,7 +28,7 @@ jobs:
         echo "nodejs version: ${{ matrix.nodejs }}"
 
     steps:
-    - name: Say Hello World 2 - ${{ matrix.os }}
+    - name: Say Hello World 2
       if: matrix.os != 'windows-latest'
       shell: bash
 
